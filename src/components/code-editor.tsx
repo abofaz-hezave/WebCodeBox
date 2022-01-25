@@ -1,4 +1,3 @@
-import "bulmaswatch/superhero/bulmaswatch.min.css";
 import "./code-editor.css";
 import React, { useRef } from 'react';
 import MonacoEditor, { EditorDidMount } from "@monaco-editor/react";
@@ -28,7 +27,7 @@ const CodeEditor: React.FC<CodeEditorProps> = ({ onChange, initialValue }) => {
             useTabs: false,
             semi: true,
             singleQuote: true
-        }).replace(/\n$/,'')
+        }).replace(/\n$/, '')
         editorRef.current.setValue(formatted)
 
     }
