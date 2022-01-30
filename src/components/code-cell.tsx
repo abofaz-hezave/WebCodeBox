@@ -7,11 +7,13 @@ import bundle from '../bundler';
 const CodeCell = () => {
   const [input, setInput] = useState('');
   const [code, setCode] = useState('');
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const bundleTimer = setTimeout(async () => {
       const output = await bundle(input);
-      setCode(output);
+      setCode(output.code);
+      setMessage(output.message);
     }, 1000);
     return () => {
       clearTimeout(bundleTimer);
@@ -28,7 +30,7 @@ const CodeCell = () => {
           />
         </Resizable>
 
-        <Preview code={code} />
+        <Preview code={code} message={message} />
       </div>
     </Resizable>
   );
