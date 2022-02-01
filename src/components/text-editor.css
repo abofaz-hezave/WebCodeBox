@@ -42,13 +42,14 @@
   background-color: #202123;
 }
 
-.text-editor .w-md-editor,
-.text-editor .w-md-editor .w-md-editor-text-pre code {
-  color: #d4d4d4 !important;
-}
-
 .text-editor .w-md-editor-text-pre .bold {
   color: unset;
+}
+
+.text-editor .w-md-editor,
+.text-editor .w-md-editor .w-md-editor-text-pre code,
+.text-editor .w-md-editor-text-pre .token {
+  color: #d4d4d4 !important;
 }
 
 .text-editor .token.list.punctuation {
