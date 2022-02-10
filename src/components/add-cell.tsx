@@ -20,7 +20,7 @@ const AddCell: React.FC<AddCellProps> = ({ nextCellId, forceVisible }) => {
           <span className="icon is-small">
             <i className="fas fa-plus" />
           </span>
-          Code
+          <span>Code</span>
         </button>
         <button
           className="button is-rounded is-primary is-small"
@@ -29,7 +29,7 @@ const AddCell: React.FC<AddCellProps> = ({ nextCellId, forceVisible }) => {
           <span className="icon is-small">
             <i className="fas fa-plus" />
           </span>
-          Text
+          <span>Text</span>
         </button>
       </div>
       <div className="separator" />
