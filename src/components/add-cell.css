@@ -2,6 +2,7 @@
   position: relative;
   opacity: 0;
   transition: opacity 0.3s;
+  margin: 10px 0;
 }
 
 .add-cell:hover {
