@@ -5,8 +5,13 @@
 }
 
 .add-cell:hover {
-  opacity: 11;
+  opacity: 1;
 }
+
+.add-cell.force-visible {
+  opacity: 1;
+}
+
 .add-cell .add-buttons button {
   margin: 0 20px;
 }
