@@ -42,7 +42,7 @@ const reducer = (state: CellsState = initialState, action: Action) =>
         draft.data[action.payload.id].content = action.payload.content;
         return draft;
 
-      case ActionType.INSERT_CELL_BEFORE:
+      case ActionType.INSERT_CELL_AFTER:
         const cell: Cell = {
           content: '',
           type: action.payload.type,
@@ -54,9 +54,9 @@ const reducer = (state: CellsState = initialState, action: Action) =>
 
         draft.data[cell.id] = cell;
         if (foundIndex < 0) {
-          draft.order.push(cell.id);
+          draft.order.unshift(cell.id);
         } else {
-          draft.order.splice(foundIndex, 0, cell.id);
+          draft.order.splice(foundIndex + 1, 0, cell.id);
         }
 
         return draft;
