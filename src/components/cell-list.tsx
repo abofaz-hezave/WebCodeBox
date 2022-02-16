@@ -11,8 +11,8 @@ const CellList: React.FC = () => {
   const cellsMap = () =>
     cells?.map((cell) => (
       <Fragment key={cell?.id}>
-        <AddCell previousCellId={cell.id} />
         <CellListItem cell={cell} />
+        <AddCell previousCellId={cell.id} />
       </Fragment>
     ));
 
