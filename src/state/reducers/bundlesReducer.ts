@@ -3,12 +3,14 @@ import { ActionType } from '../action-types';
 import { Action } from '../actions';
 
 interface BundlesState {
-  [key: string]: {
-    loading: boolean;
-    success: boolean;
-    code: string;
-    message: string;
-  };
+  [key: string]:
+    | {
+        loading: boolean;
+        success: boolean;
+        code: string;
+        message: string;
+      }
+    | undefined;
 }
 
 const initialState: BundlesState = {};
