@@ -1,3 +1,4 @@
+import './code-cell.css';
 import { useEffect } from 'react';
 import CodeEditor from './code-editor';
 import Preview from './preview';
@@ -29,8 +30,19 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     };
   }, [cell.content, cell.id]);
 
+  const bundleView = () => {
+    if (!bundle || bundle.loading)
+      return (
+        <div className="progress-cover">
+          <progress className="progress is-small is-primary">Loading</progress>
+        </div>
+      );
+
+    return <Preview code={bundle.code} message={bundle.message} />;
+  };
+
   return (
-    <Resizable direction='vertical'>
+    <Resizable direction="vertical">
       <div
         style={{
           height: 'calc(100% - 10px)',
@@ -38,14 +50,13 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
           flexDirection: 'row',
         }}
       >
-        <Resizable direction='horizontal'>
+        <Resizable direction="horizontal">
           <CodeEditor
             onChange={(value) => updateCell(cell.id, value)}
             initialValue={cell.content}
           />
         </Resizable>
-
-        {bundle && <Preview code={bundle.code} message={bundle.message} />}
+        {bundleView()}
       </div>
     </Resizable>
   );
