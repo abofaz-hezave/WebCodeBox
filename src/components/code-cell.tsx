@@ -56,7 +56,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
             initialValue={cell.content}
           />
         </Resizable>
-        {bundleView()}
+        <div className="bundle-view-wrapper">{bundleView()}</div>
       </div>
     </Resizable>
   );
