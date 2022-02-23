@@ -17,7 +17,15 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const cumulativeCode = useTypedSelector((state) => {
     const { data, order } = state.cells;
     const orderedCells = order.map((id) => data[id]);
-    const cumulativeCode = [];
+    const cumulativeCode = [
+      `
+      const show = (value) => {
+        {
+          document.querySelector('#root').innerHTML = value;
+        }
+      }
+      `,
+    ];
 
     for (let cumulatingCell of orderedCells) {
       if (cumulatingCell.type === 'code') {
@@ -29,7 +37,6 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     }
     return cumulativeCode;
   });
-  console.log(0, cumulativeCode, (cumulativeCode as any).join('\n'));
 
   const getCumulativeCode = () => (cumulativeCode as any).join('\n');
 
