@@ -14,8 +14,26 @@ interface CodeCellProps {
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
+  const cumulativeCode = useTypedSelector((state) => {
+    const { data, order } = state.cells;
+    const orderedCells = order.map((id) => data[id]);
+    const cumulativeCode = [];
 
-  const createNewBundle = () => createBundle(cell.id, cell.content);
+    for (let cumulatingCell of orderedCells) {
+      if (cumulatingCell.type === 'code') {
+        cumulativeCode.push(cumulatingCell.content);
+      }
+      if (cumulatingCell.id === cell.id) {
+        break;
+      }
+    }
+    return cumulativeCode;
+  });
+  console.log(0, cumulativeCode, (cumulativeCode as any).join('\n'));
+
+  const getCumulativeCode = () => (cumulativeCode as any).join('\n');
+
+  const createNewBundle = () => createBundle(cell.id, getCumulativeCode());
 
   useEffect(() => {
     if (!bundle) {
@@ -28,7 +46,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     return () => {
       clearTimeout(bundleTimer);
     };
-  }, [cell.content, cell.id]);
+  }, [getCumulativeCode(), cell.id]);
 
   const bundleView = () => {
     if (!bundle || bundle.loading)
