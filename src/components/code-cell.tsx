@@ -6,6 +6,7 @@ import Resizable from './resizable';
 import { Cell } from '../state';
 import { useActions } from '../hooks/use-actions';
 import { useTypedSelector } from '../hooks/use-typed-selector';
+import { useCumulativeCode } from '../hooks/use-cumulative-code';
 
 interface CodeCellProps {
   cell: Cell;
@@ -14,40 +15,9 @@ interface CodeCellProps {
 const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
   const { updateCell, createBundle } = useActions();
   const bundle = useTypedSelector((state) => state.bundles[cell.id]);
-  const cumulativeCode = useTypedSelector((state) => {
-    const { data, order } = state.cells;
-    const orderedCells = order.map((id) => data[id]);
-    const isCodeCell = (selectedCell: Cell) => selectedCell.type === 'code';
-    const isCurrentCell = (selectedCell: Cell) => selectedCell.id === cell.id;
+  const cumulativeCode = useCumulativeCode(cell.id);
 
-    const actionShow = `
-    import Cell_React from 'react';
-    import Cell_ReactDOM from 'react-dom';
-
-     show = (value) => {
-      const root = document.querySelector('#root');
-      if (typeof value !== 'object') return (root.innerHTML = value);
-      if (value.$$typeof && value.props) return Cell_ReactDOM.render(value, root);
-      return (root.innerHTML = JSON.stringify(value));
-    };
-    `;
-    const cumulativeCode = ['let show = (value) => {}'];
-
-    for (let cumulatingCell of orderedCells) {
-      if (isCodeCell(cumulatingCell))
-        cumulativeCode.push(cumulatingCell.content);
-
-      if (isCodeCell(cumulatingCell) && isCurrentCell(cumulatingCell))
-        cumulativeCode.push(actionShow);
-
-      if (isCurrentCell(cumulatingCell)) break;
-    }
-    return cumulativeCode;
-  });
-
-  const getCumulativeCode = () => (cumulativeCode as any).join('\n');
-
-  const createNewBundle = () => createBundle(cell.id, getCumulativeCode());
+  const createNewBundle = () => createBundle(cell.id, cumulativeCode);
 
   useEffect(() => {
     if (!bundle) {
@@ -60,7 +30,7 @@ const CodeCell: React.FC<CodeCellProps> = ({ cell }) => {
     return () => {
       clearTimeout(bundleTimer);
     };
-  }, [getCumulativeCode(), cell.id]);
+  }, [cumulativeCode, cell.id]);
 
   const bundleView = () => {
     if (!bundle || bundle.loading)
