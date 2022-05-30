@@ -1,5 +1,5 @@
 import './action-bar.css';
-import { useActions } from '../hooks/use-actions';
+import { useActions } from '../../hooks/use-actions';
 // import CellListItem from './cell-list-item';
 
 interface ActionBarProps {
