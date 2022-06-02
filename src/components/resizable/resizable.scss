@@ -1,8 +1,12 @@
+$resizableThickness: 10px;
+
 .react-resizable-handle {
   display: block;
-  background-color: #37414b;
-  background-repeat: no-repeat;
-  background-position: 50%;
+  background: {
+    color: #37414b;
+    repeat: no-repeat;
+    position: 50%;
+  }
 }
 
 .resize-horizontal {
@@ -11,15 +15,15 @@
 }
 
 .react-resizable-handle-s {
-  height: 10px;
+  height: $resizableThickness;
   width: 100%;
   cursor: row-resize;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
 }
 
 .react-resizable-handle-e {
-  width: 10px;
-  min-width: 10px;
+  width: $resizableThickness;
+  min-width: $resizableThickness;
   height: 100%;
   cursor: col-resize;
   background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');

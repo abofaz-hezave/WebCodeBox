@@ -1,4 +1,4 @@
-import './text-editor.css';
+import './text-editor.scss';
 import { useState, useEffect, useRef } from 'react';
 import MDEditor from '@uiw/react-md-editor';
 import { Cell } from '../../state';

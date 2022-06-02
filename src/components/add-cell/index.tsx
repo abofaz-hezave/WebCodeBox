@@ -1,4 +1,4 @@
-import './add-cell.css';
+import './add-cell.scss';
 import { useActions } from '../../hooks/use-actions';
 // import CellListItem from './cell-list-item';
 

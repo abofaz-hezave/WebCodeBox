@@ -1,4 +1,4 @@
-import './code-cell.css';
+import './code-cell.scss';
 import { useEffect } from 'react';
 import CodeEditor from '../code-editor';
 import Preview from '../preview';

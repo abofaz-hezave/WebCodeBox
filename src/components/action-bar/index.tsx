@@ -1,4 +1,4 @@
-import './action-bar.css';
+import './action-bar.scss';
 import { useActions } from '../../hooks/use-actions';
 // import CellListItem from './cell-list-item';
 

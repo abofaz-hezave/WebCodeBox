@@ -1,0 +1,68 @@
+@mixin text-color {
+  color: #d4d4d4 !important;
+}
+
+.text-editor {
+  em {
+    font-style: italic;
+  }
+
+  .w-md-editor-content {
+    background-color: #202123;
+  }
+
+  .token.list.punctuation {
+    background-color: unset;
+  }
+
+  .w-md-editor {
+    @include text-color;
+  }
+
+  .w-md-editor-text-pre {
+    .bold {
+      color: unset;
+    }
+    .token,
+    code {
+      @include text-color;
+    }
+  }
+
+  .w-md-editor-show-live {
+    /* Hide menu bar buttons to prevent accidental delete */
+    z-index: 20;
+  }
+
+  .w-md-editor-toolbar {
+    background-color: #37414b;
+    border-bottom: 1px solid gray;
+    li button {
+      color: #d4d4d4;
+    }
+  }
+
+  .w-md-editor-bar {
+    position: relative;
+    height: 11px;
+    width: 100%;
+    cursor: row-resize;
+    background-color: #37414b;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAFAQMAAABo7865AAAABlBMVEVHcEzMzMzyAv2sAAAAAXRSTlMAQObYZgAAABBJREFUeF5jOAMEEAIEEFwAn3kMwcB6I2AAAAAASUVORK5CYII=');
+
+    svg {
+      display: none;
+    }
+  }
+
+  .wmde-markdown {
+    hr {
+      border-top: 1px solid #dee5ed;
+    }
+    ol {
+      list-style: decimal;
+    }
+  }
+}
